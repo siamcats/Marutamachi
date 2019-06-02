@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="Marutamachi.BlankPage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Marutamachi"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid RequestedTheme="Light" Background="#E9E9E9">
+        <!-- ［Stock］ボタン -->
+        <Button x:Name="StockButton" Click="StockButton_Click"
+            Width="48" VerticalAlignment="Top" Background="Transparent" HorizontalAlignment="Right">
+            <Button.Content>
+                <SymbolIcon Symbol="Pin" />
+            </Button.Content>
+        </Button>
+        <!-- 残高表示エリア -->
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"
+                    Width="400" MaxWidth="800" Background="#74BC59">
+            <StackPanel>
+                <TextBlock x:Name="Name" FontFamily="Yu Gothic" FontSize="50" Text="Suica"
+                           HorizontalAlignment="Left" VerticalAlignment="Top"
+                           Margin="10,10,10,10"
+                   />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock x:Name="Balance" FontFamily="Yu Gothic" FontSize="40" Text="99,999" FontWeight="Bold" 
+                           TextAlignment="Right"/>
+                <TextBlock x:Name="BalanceUnit" FontFamily="Yu Gothic" FontSize="40"
+                           Text="円"
+                           HorizontalAlignment="Right"
+                           Width="60" Margin="10,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock x:Name="Point" FontFamily="Yu Gothic" FontSize="40" Text="9,999" FontWeight="Bold" 
+                           TextAlignment="Right" />
+                <TextBlock x:Name="PointUnit" FontFamily="Yu Gothic" FontSize="40" Text="pt"
+                           Width="60" Margin="10,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

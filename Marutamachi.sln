@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marutamachi", "Marutamachi\Marutamachi.csproj", "{F7E78132-81F3-459C-8B27-C0ABD0F81874}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PcscSdk", "PcscSdk\PcscSdk.csproj", "{78F7351D-0EB3-49E4-B257-36B7977954F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -33,6 +35,18 @@ Global
 		{F7E78132-81F3-459C-8B27-C0ABD0F81874}.Release|x86.ActiveCfg = Release|x86
 		{F7E78132-81F3-459C-8B27-C0ABD0F81874}.Release|x86.Build.0 = Release|x86
 		{F7E78132-81F3-459C-8B27-C0ABD0F81874}.Release|x86.Deploy.0 = Release|x86
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Debug|ARM.ActiveCfg = Debug|ARM
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Debug|ARM.Build.0 = Debug|ARM
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Debug|x64.ActiveCfg = Debug|x64
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Debug|x64.Build.0 = Debug|x64
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Debug|x86.ActiveCfg = Debug|x86
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Debug|x86.Build.0 = Debug|x86
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Release|ARM.ActiveCfg = Release|ARM
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Release|ARM.Build.0 = Release|ARM
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Release|x64.ActiveCfg = Release|x64
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Release|x64.Build.0 = Release|x64
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Release|x86.ActiveCfg = Release|x86
+		{78F7351D-0EB3-49E4-B257-36B7977954F9}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

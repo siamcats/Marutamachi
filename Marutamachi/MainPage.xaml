@@ -9,5 +9,34 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <SplitView HorizontalAlignment="Left" 
+                   Height="720" 
+                   VerticalAlignment="Top" 
+                   Width="1280" 
+                   IsPaneOpen="{Binding ElementName=HamburgerButton, Path=IsChecked, Mode=TwoWay}"
+                   >
+            <!--パネル-->
+            <SplitView.Pane>
+                <Grid>
+                    <ListView x:Name="listView" HorizontalAlignment="Left" Height="720" VerticalAlignment="Top" Width="1280"/>
+                    
+                </Grid>
+            </SplitView.Pane>
+            
+            <!--コンテンツ-->
+            <SplitView.Content>
+                <Grid Background="LightGoldenrodYellow">
+                    <TextBlock x:Name="DevMsg" FontSize="36" Margin="24,40,0,0" HorizontalAlignment="Center">
+                    </TextBlock>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+
+        <!--ハンバーガーボタン-->
+        <ToggleButton x:Name="HamburgerButton" VerticalAlignment="Top">
+            <ToggleButton.Content>
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
+            </ToggleButton.Content>
+        </ToggleButton>
     </Grid>
 </Page>
