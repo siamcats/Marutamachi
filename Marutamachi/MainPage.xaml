@@ -25,8 +25,8 @@
             
             <!--コンテンツ-->
             <SplitView.Content>
-                <Grid Background="LightGoldenrodYellow">
-                    <TextBlock x:Name="DevMsg" FontSize="36" Margin="24,40,0,0" HorizontalAlignment="Center">
+                <Grid Background="White">
+                    <TextBlock x:Name="DevMsg" FontSize="20" Margin="24,40,0,0" HorizontalAlignment="Left" Foreground="#FF777777">
                     </TextBlock>
                 </Grid>
             </SplitView.Content>

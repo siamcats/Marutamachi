@@ -12,10 +12,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Felica;
 using Windows.Devices.Enumeration;
 using Windows.Devices.SmartCards;
 using Windows.Networking.Proximity;
+using Pcsc.Common;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
@@ -40,15 +40,16 @@ namespace Marutamachi
             var device = devices.FirstOrDefault();
             if (device == null)
             {
-                DevMsg.Text = "リーダー見つからない";
                 return;
             }
+            DevMsg.Text = DevMsg.Text + "device ok \r\n";
 
             var reader = await SmartCardReader.FromIdAsync(device.Id);
             if (reader == null)
             {
                 return;
             }
+            DevMsg.Text = DevMsg.Text + "reader ok \r\n";
 
             // カード検索
             var cards = await reader.FindAllCardsAsync();
@@ -57,15 +58,24 @@ namespace Marutamachi
             {
                 return;
             }
+            DevMsg.Text = DevMsg.Text + "Cardを検出 \r\n";
 
-            // 接続してポーリングコマンド送信
+            // カードタイプ判別
             using (var con = await card.ConnectAsync())
             {
-                var handler = new AccessHandler(con);
+                IccDetection detection = new IccDetection(card, con);
+                await detection.DetectCardTypeAync();
 
-                var result = await handler.TransparentExchangeAsync(new byte[] { 6, 0, 0xff, 0xff, 0, 3 });
+                DevMsg.Text = DevMsg.Text + " CardName : " + detection.PcscCardName.ToString() + "\r\n" ;
+                DevMsg.Text = DevMsg.Text + " DeviceClass : " + detection.PcscDeviceClass.ToString() + "\r\n" ;
+
+                if (detection.PcscDeviceClass == Pcsc.Common.DeviceClass.StorageClass
+                    && detection.PcscCardName == Pcsc.CardName.FeliCa)
+                {
+                    var handler = new Felica.AccessHandler(con);
+                    var result = await handler.TransparentExchangeAsync(new byte[] { 6, 0, 0xff, 0xff, 0, 3 });
+                }
             }
         }
-
     }
 }
