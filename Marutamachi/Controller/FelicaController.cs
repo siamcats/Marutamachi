@@ -2,24 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.Devices.SmartCards;
 using Felica;
 
 namespace Marutamachi.Controller
 {
-    class Felica
-    {
-
+    class FelicaController
+    {        
         AccessHandler _handler;
 
-        Felica(AccessHandler handler)
+        public FelicaController(SmartCardConnection con)
         {
-            _handler = handler;
+            _handler = new Felica.AccessHandler(con);
         }
 
-        /*
-        public String GetIdm()
+        public async Task<String> GetIdm()
         {
+            var result = await _handler.TransparentExchangeAsync(new byte[] { 6, 0, 0xff, 0xff, 0, 3 });
+            Debug.WriteLine(result.ToString());
+
+            /*
             byte systemCodeHigher = (byte)(systemCode >> 8);
             byte systemCodeLower = (byte)(systemCode & 0x00ff);
 
@@ -34,7 +38,8 @@ namespace Marutamachi.Controller
             Array.Copy(result, 2, idm, 0, idm.Length);
 
             return idm;
+            */
+            return null;
         }
-        */
     }
 }

@@ -16,6 +16,8 @@ using Windows.Devices.Enumeration;
 using Windows.Devices.SmartCards;
 using Windows.Networking.Proximity;
 using Pcsc.Common;
+using Marutamachi.Service;
+using System.Diagnostics;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
@@ -26,13 +28,14 @@ namespace Marutamachi
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private SmartCardReader _reader;
+
         public MainPage()
         {
             this.InitializeComponent();
-            Polling();
         }
 
-        private async void Polling()
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             // Reader検索
             var selector = SmartCardReader.GetDeviceSelector(SmartCardReaderKind.Any);
@@ -42,23 +45,28 @@ namespace Marutamachi
             {
                 return;
             }
-            DevMsg.Text = DevMsg.Text + "device ok \r\n";
+            Log("Device Set");
 
-            var reader = await SmartCardReader.FromIdAsync(device.Id);
-            if (reader == null)
+
+            var _reader = await SmartCardReader.FromIdAsync(device.Id);
+            if (_reader == null)
             {
                 return;
             }
-            DevMsg.Text = DevMsg.Text + "reader ok \r\n";
+            Log("Reader Set");
 
+            _reader.CardAdded += OnCardAdded;
+        }
+
+        private async void OnCardAdded(SmartCardReader sender, CardAddedEventArgs args)
+        {
             // カード検索
-            var cards = await reader.FindAllCardsAsync();
-            var card = cards.FirstOrDefault();
+            var card = args.SmartCard;
             if (card == null)
             {
                 return;
             }
-            DevMsg.Text = DevMsg.Text + "Cardを検出 \r\n";
+            Log("Card OK");
 
             // カードタイプ判別
             using (var con = await card.ConnectAsync())
@@ -66,16 +74,51 @@ namespace Marutamachi
                 IccDetection detection = new IccDetection(card, con);
                 await detection.DetectCardTypeAync();
 
-                DevMsg.Text = DevMsg.Text + " CardName : " + detection.PcscCardName.ToString() + "\r\n" ;
-                DevMsg.Text = DevMsg.Text + " DeviceClass : " + detection.PcscDeviceClass.ToString() + "\r\n" ;
+                Log(" CardName : " + detection.PcscCardName.ToString());
+                Log(" DeviceClass : " + detection.PcscDeviceClass.ToString());
 
                 if (detection.PcscDeviceClass == Pcsc.Common.DeviceClass.StorageClass
                     && detection.PcscCardName == Pcsc.CardName.FeliCa)
+
+                    new Controller.FelicaController(con);
+
+
+            }
+        }
+
+        private async void Polling()
+        {
+            // カード検索
+            var cards = await _reader.FindAllCardsAsync();
+            var card = cards.FirstOrDefault();
+            if (card == null)
+            {
+                return;
+            }
+            Log("Card OK");
+
+            // カードタイプ判別
+            using (var con = await card.ConnectAsync())
+            {
+                IccDetection detection = new IccDetection(card, con);
+                await detection.DetectCardTypeAync();
+
+                Log(" CardName : " + detection.PcscCardName.ToString());
+                Log(" DeviceClass : " + detection.PcscDeviceClass.ToString());
+
+                if (detection.PcscDeviceClass == Pcsc.Common.DeviceClass.StorageClass
+                    && detection.PcscCardName == Pcsc.CardName.FeliCa)
+
+                    new Controller.FelicaController(con);
                 {
-                    var handler = new Felica.AccessHandler(con);
-                    var result = await handler.TransparentExchangeAsync(new byte[] { 6, 0, 0xff, 0xff, 0, 3 });
                 }
             }
         }
+
+        private async void Log(String message)
+        {
+            Debug.WriteLine(message);
+        }
+
     }
 }
