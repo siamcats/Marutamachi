@@ -131,7 +131,7 @@ namespace Marutamachi.ViewModel
         }
 
 
-        private async void Log(String message)
+        private void Log(String message)
         {
             Debug.WriteLine(message);
         }
