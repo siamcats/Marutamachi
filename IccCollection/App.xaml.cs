@@ -1,6 +1,7 @@
 ﻿using System;
 
 using IccCollection.Services;
+using IccCollection.Core.Models;
 
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -29,6 +30,15 @@ namespace IccCollection
             if (!args.PrelaunchActivated)
             {
                 await ActivationService.ActivateAsync(args);
+            }
+
+            SQLitePCL.Batteries_V2.Init();
+            SQLitePCL.raw.sqlite3_win32_set_directory(/*data directory type*/1, Windows.Storage.ApplicationData.Current.LocalFolder.Path);
+            SQLitePCL.raw.sqlite3_win32_set_directory(/*temp directory type*/2, Windows.Storage.ApplicationData.Current.TemporaryFolder.Path);
+
+            using (var context = new IccContext())
+            {
+                context.Database.EnsureCreated();
             }
         }
 
