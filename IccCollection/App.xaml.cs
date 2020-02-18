@@ -43,6 +43,8 @@ namespace IccCollection
             {
                 context.Database.Migrate();
             }
+
+            ReaderService.DeviceSetAsync();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)

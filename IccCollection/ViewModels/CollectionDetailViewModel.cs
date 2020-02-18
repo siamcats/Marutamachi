@@ -10,9 +10,9 @@ namespace IccCollection.ViewModels
 {
     public class CollectionDetailViewModel : Observable
     {
-        private SampleOrder _item;
+        private Card _item;
 
-        public SampleOrder Item
+        public Card Item
         {
             get { return _item; }
             set { Set(ref _item, value); }
@@ -22,10 +22,10 @@ namespace IccCollection.ViewModels
         {
         }
 
-        public async Task InitializeAsync(long orderID)
+        public async Task InitializeAsync(long id)
         {
-            var data = await SampleDataService.GetContentGridDataAsync();
-            Item = data.First(i => i.OrderID == orderID);
+            var data = await CardService.GetAllCardsAsync();
+            Item = data.First(i => i.Id == id);
         }
     }
 }

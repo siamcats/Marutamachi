@@ -49,6 +49,8 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
+    <uap:Capability Name="sharedUserCertificates"/>
+    <DeviceCapability Name="proximity"/>
   </Capabilities>
 
   <genTemplate:Metadata>

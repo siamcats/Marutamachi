@@ -17,7 +17,7 @@ namespace IccCollection.ViewModels
     {
         private ICommand _itemClickCommand;
 
-        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<SampleOrder>(OnItemClick));
+        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<Card>(OnItemClick));
 
         public ObservableCollection<Card> Source { get; } = new ObservableCollection<Card>();
 
@@ -36,6 +36,7 @@ namespace IccCollection.ViewModels
         //        Source.Add(item);
         //    }
         //}
+
         public async Task LoadDataAsync()
         {
             Source.Clear();
@@ -47,12 +48,12 @@ namespace IccCollection.ViewModels
             }
         }
 
-        private void OnItemClick(SampleOrder clickedItem)
+        private void OnItemClick(Card clickedItem)
         {
             if (clickedItem != null)
             {
                 NavigationService.Frame.SetListDataItemForNextConnectedAnimation(clickedItem);
-                NavigationService.Navigate<CollectionDetailPage>(clickedItem.OrderID);
+                NavigationService.Navigate<CollectionDetailPage>(clickedItem.Id);
             }
         }
     }
