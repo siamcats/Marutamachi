@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IccCollection", "IccCollect
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IccCollection.Core", "IccCollection.Core\IccCollection.Core.csproj", "{9978959A-4847-4117-BF0C-8B4A74616745}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbMigration", "DbMigration\DbMigration.csproj", "{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,26 @@ Global
 		{9978959A-4847-4117-BF0C-8B4A74616745}.Release|x64.Build.0 = Release|Any CPU
 		{9978959A-4847-4117-BF0C-8B4A74616745}.Release|x86.ActiveCfg = Release|Any CPU
 		{9978959A-4847-4117-BF0C-8B4A74616745}.Release|x86.Build.0 = Release|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Debug|ARM.Build.0 = Debug|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Debug|x64.Build.0 = Debug|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Debug|x86.Build.0 = Debug|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Release|ARM.ActiveCfg = Release|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Release|ARM.Build.0 = Release|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Release|ARM64.Build.0 = Release|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Release|x64.ActiveCfg = Release|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Release|x64.Build.0 = Release|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Release|x86.ActiveCfg = Release|Any CPU
+		{9BE6E769-DC2C-4982-9235-BAD6DADD9B01}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

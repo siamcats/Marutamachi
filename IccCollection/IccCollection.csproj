@@ -148,6 +148,7 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\ReaderService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="ViewModels\CollectionDetailViewModel.cs" />
     <Compile Include="ViewModels\CollectionViewModel.cs" />
@@ -259,6 +260,10 @@
     <ProjectReference Include="..\IccCollection.Core\IccCollection.Core.csproj">
       <Project>{9978959A-4847-4117-BF0C-8B4A74616745}</Project>
       <Name>IccCollection.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PcscSdk\PcscSdk.csproj">
+      <Project>{78f7351d-0eb3-49e4-b257-36b7977954f9}</Project>
+      <Name>PcscSdk</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

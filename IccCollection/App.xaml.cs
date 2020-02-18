@@ -1,8 +1,11 @@
 ﻿using System;
-
+using System.Diagnostics;
+using System.Threading.Tasks;
+using IccCollection.Core.Models;
 using IccCollection.Services;
-
+using Microsoft.EntityFrameworkCore;
 using Windows.ApplicationModel.Activation;
+using Windows.Storage;
 using Windows.UI.Xaml;
 
 namespace IccCollection
@@ -30,6 +33,29 @@ namespace IccCollection
             {
                 await ActivationService.ActivateAsync(args);
             }
+
+            Debug.WriteLine(Windows.Storage.ApplicationData.Current.LocalFolder.Path);
+
+            SQLitePCL.Batteries_V2.Init();
+            SQLitePCL.raw.sqlite3_win32_set_directory(/*data directory type*/1, Windows.Storage.ApplicationData.Current.LocalFolder.Path);
+            SQLitePCL.raw.sqlite3_win32_set_directory(/*temp directory type*/2, Windows.Storage.ApplicationData.Current.TemporaryFolder.Path);
+
+            using (var db = new BloggingContext())
+            {
+
+                //db.Database.EnsureCreated();
+                db.Database.Migrate();
+            }
+        }
+
+        private async Task<bool> IsFileExisted(string fileName)
+        {
+            var result = await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName);
+            if (result == null)
+            {
+                return false;
+            }
+            return true;
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
