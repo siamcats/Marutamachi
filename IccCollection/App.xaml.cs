@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using IccCollection.Core.Models;
 using IccCollection.Services;
 using IccCollection.Core.Models;
 
 using Windows.ApplicationModel.Activation;
 using Windows.Storage;
 using Windows.UI.Xaml;
+using Microsoft.EntityFrameworkCore;
 
 namespace IccCollection
 {
@@ -41,7 +41,7 @@ namespace IccCollection
 
             using (var context = new IccContext())
             {
-                context.Database.EnsureCreated();
+                context.Database.Migrate();
             }
         }
 

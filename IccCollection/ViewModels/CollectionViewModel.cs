@@ -19,18 +19,28 @@ namespace IccCollection.ViewModels
 
         public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<SampleOrder>(OnItemClick));
 
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<Card> Source { get; } = new ObservableCollection<Card>();
 
         public CollectionViewModel()
         {
         }
 
+        //public async Task LoadDataAsync()
+        //{
+        //    Source.Clear();
+
+        //    // TODO WTS: Replace this with your actual data
+        //    var data = await SampleDataService.GetContentGridDataAsync();
+        //    foreach (var item in data)
+        //    {
+        //        Source.Add(item);
+        //    }
+        //}
         public async Task LoadDataAsync()
         {
             Source.Clear();
 
-            // TODO WTS: Replace this with your actual data
-            var data = await SampleDataService.GetContentGridDataAsync();
+            var data = await CardService.GetAllCardsAsync();
             foreach (var item in data)
             {
                 Source.Add(item);
